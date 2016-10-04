@@ -4,18 +4,19 @@ def computeTransition(Pattern,Alphabet,delta) :
 	for q in range(m):
 		for a in range(n):
 			k=min(m+1,q+2)
-			k-=1
 			pa=Pattern[:q]+Alphabet[a]
-			while not (Pattern[:k].endswith(pa)) and k>0:
+			pk=Pattern[:k]
+			k-=1
+			while not (pa.endswith(pk)) and k>0:
 				k-=1
-			delta[(q,Alphabet[a])]=k
+			delta[(Alphabet[a],q)]=k
 		#	print(delta)
 
 def finiteAutomatonMatcher (Text,delta,m) :
 	n=len(Text)
 	q=0
 	for i in range (1,n):
-		q=delta[(q,Text[i])]
+		q=delta[(Text[i],q)]
 		if q==m :
 			print("pattern occurs with shift ",i-m)
 
