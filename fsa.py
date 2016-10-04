@@ -1,4 +1,4 @@
-                         def computeTransition(Pattern,Alphabet,delta) :
+def computeTransition(Pattern,Alphabet,delta) :
 	m=len(Pattern)
 	n=len(Alphabet)
 	for q in range(m):
@@ -8,7 +8,7 @@
 			pa=Pattern[:q]+Alphabet[a]
 			while not (Pattern[:k].endswith(pa)) and k>0:
 				k-=1
-			delta[(Alphabet[a],q)]=k
+			delta[(q,Alphabet[a])]=k
 		#	print(delta)
 
 def finiteAutomatonMatcher (Text,delta,m) :
