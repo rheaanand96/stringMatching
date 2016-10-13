@@ -1,6 +1,7 @@
-def computeTransition(Pattern,Alphabet,delta) :
+def computeTransition(Pattern,Alphabet) :
 	m=len(Pattern)
 	n=len(Alphabet)
+	delta{}
 	for q in range(m+1):
 		for a in range(n):
 			k=min(m+1,q+2)
@@ -12,8 +13,10 @@ def computeTransition(Pattern,Alphabet,delta) :
 				k-=1
 			delta[(Alphabet[a],q)]=k
 		#	print(delta)
-links=[]
+	return delta
+
 def finiteAutomatonMatcher (Text,delta,m) :
+	links=[]
 	indices=[]
 	n=len(Text)
 	q=0
@@ -44,18 +47,19 @@ data=re.sub(' +',' ',data)
 '''
 data=list("http://x.com\n abcd http://n.com\n abcdhtt http//k.com\n")
 
-A=set(data);
-Alphabet=list(A);
-print(Alphabet)
-Pattern=("http");
-delta ={}
 
-computeTransition(Pattern,Alphabet,delta)
-print(delta)
-for (i,q) in delta :
-	if delta[(i,q)]>0 :
-		print (i,q,delta[(i,q)])
-m=len(Pattern)
-finiteAutomatonMatcher(data,delta,m)
-print(links)
-print(data)
+
+def FSA (T,P):
+	A=set(T);
+	Alphabet=list(A);
+	print(Alphabet)
+	Pattern=("http");
+	delta=computeTransition(Pattern,Alphabet)
+	print(delta)
+	for (i,q) in delta :
+		if delta[(i,q)]>0 :
+			print (i,q,delta[(i,q)])
+	m=len(Pattern)
+	links=finiteAutomatonMatcher(data,delta,m)
+	print(links)
+	print(data)
